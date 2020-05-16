@@ -1,5 +1,5 @@
 {
-  "release": 3,
+  "release": "2",
   "schemas": [
     {
       "file": "tables.sql",

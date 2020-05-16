@@ -1,5 +1,5 @@
 {
-  "release": 1,
+  "release": "4",
   "schemas": [
     {
       "file": "tables.sql",
@@ -37,6 +37,16 @@
     },
     {
       "file": "tags.sql",
+      "checksum": ""
+    },
+    {
+      "file": "keyman.sql",
+      "checksum": ""
+    }
+  ],
+  "upgrade": [
+    {
+      "file": "upgrade.sql",
       "checksum": ""
     }
   ]
