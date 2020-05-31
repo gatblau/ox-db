@@ -1,0 +1,27 @@
+[
+  {
+    "script": "db_and_user.sql",
+    "vars": [
+      {
+        "name": "<DB_NAME>",
+        "from": "Db.Name"
+      },
+      {
+        "name": "<DB_USER>",
+        "from": "Db.Username"
+      },
+      {
+        "name": "<DB_PWD>",
+        "from": "Db.Password"
+      }
+    ]
+  },
+  {
+    "script": "extensions.sql",
+    "vars": []
+  },
+  {
+    "script": "version_table.sql",
+    "vars": []
+  }
+]
