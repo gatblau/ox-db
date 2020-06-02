@@ -1,5 +1,6 @@
 [
   {
+    "action": "creating database and user",
     "script": "db_and_user.sql",
     "vars": [
       {
@@ -17,10 +18,12 @@
     ]
   },
   {
+    "action": "installing database extensions",
     "script": "extensions.sql",
     "vars": []
   },
   {
+    "action": "creating the version table",
     "script": "version_table.sql",
     "vars": []
   }
