@@ -25,8 +25,13 @@
       ]
     },
     {
-      "action": "installing database extensions",
-      "script": "install_extensions.sql",
+      "action": "installing hstore extension",
+      "script": "install_hstore.sql",
+      "vars": []
+    },
+    {
+      "action": "installing intarray extension",
+      "script": "install_intarray.sql",
       "vars": []
     }
   ]
