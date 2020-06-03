@@ -1,6 +1,5 @@
 {
-  "items":
-  [
+  "items": [
     {
       "action": "creating the database",
       "script": "create_db.sql",
