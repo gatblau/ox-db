@@ -2,13 +2,19 @@
   "items":
   [
     {
-      "action": "creating database and user",
-      "script": "db_and_user.sql",
+      "action": "creating the database",
+      "script": "create_db.sql",
       "vars": [
         {
           "name": "<DB_NAME>",
           "from": "Db.Name"
-        },
+        }
+      ]
+    },
+    {
+      "action": "creating the database user",
+      "script": "create_user.sql",
+      "vars": [
         {
           "name": "<DB_USER>",
           "from": "Db.Username"
@@ -21,12 +27,7 @@
     },
     {
       "action": "installing database extensions",
-      "script": "extensions.sql",
-      "vars": []
-    },
-    {
-      "action": "creating the version table",
-      "script": "version_table.sql",
+      "script": "install_extensions.sql",
       "vars": []
     }
   ]
