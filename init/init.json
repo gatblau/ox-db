@@ -2,7 +2,9 @@
   "items": [
     {
       "action": "creating the database",
-      "script": "create_db.sql",
+      "script": "db.sql",
+      "admin": true,
+      "db": false,
       "vars": [
         {
           "name": "<DB_NAME>",
@@ -12,7 +14,9 @@
     },
     {
       "action": "creating the database user",
-      "script": "create_user.sql",
+      "script": "user.sql",
+      "admin": true,
+      "db": false,
       "vars": [
         {
           "name": "<DB_USER>",
@@ -26,12 +30,16 @@
     },
     {
       "action": "installing hstore extension",
-      "script": "install_hstore.sql",
+      "script": "hstore.sql",
+      "admin": true,
+      "db": true,
       "vars": []
     },
     {
       "action": "installing intarray extension",
-      "script": "install_intarray.sql",
+      "script": "intarray.sql",
+      "admin": true,
+      "db": true,
       "vars": []
     }
   ]
