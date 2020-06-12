@@ -1,0 +1,142 @@
+{
+  "scripts": [
+    {
+      "name": "create the database",
+      "file": "db.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": false,
+      "vars": [
+        {
+          "name": "<DB_NAME>",
+          "from": "Db.Name"
+        }
+      ]
+    },
+    {
+      "name": "create the database user",
+      "file": "user.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": false,
+      "vars": [
+        {
+          "name": "<DB_USER>",
+          "from": "Db.Username"
+        },
+        {
+          "name": "<DB_PWD>",
+          "from": "Db.Password"
+        }
+      ]
+    },
+    {
+      "name": "install hstore extension",
+      "file": "hstore.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "install intarray extension",
+      "file": "intarray.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "sql tables",
+      "file": "tables.sql",
+      "type": "schema",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "json schema validation",
+      "file": "json.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "general data validation",
+      "file": "validation.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "set functions",
+      "file": "set.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "get functions",
+      "file": "get.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "delete functions",
+      "file": "delete.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "general queries",
+      "file": "queries.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "tree management",
+      "file": "tree.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "tagging",
+      "file": "tags.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "encryption",
+      "file": "keyman.sql",
+      "type": "objects",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "upgrade from version 3",
+      "file": "upgrade.sql",
+      "type": "upgrade",
+      "asAdmin": false,
+      "useDb": true,
+      "vars": []
+    }
+  ]
+}

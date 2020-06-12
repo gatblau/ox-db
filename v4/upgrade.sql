@@ -18,6 +18,11 @@
 DO
 $$
     BEGIN
+        CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+
+        -- disable all triggers
+        SET session_replication_role = replica;
+
         CREATE SEQUENCE membership_id_seq
             START WITH 10
             INCREMENT BY 1
@@ -190,9 +195,20 @@ $$
             ADD COLUMN managed boolean;
 
         ALTER TABLE privilege
-            ADD COLUMN "key" character varying(100) NOT NULL,
+            ADD COLUMN "key" character varying(100),
             ADD COLUMN version bigint,
             ADD COLUMN updated timestamp(6) with time zone;
+
+        -- populate key and version
+        UPDATE privilege
+        SET key=sub.key, version=sub.version
+        FROM (
+            SELECT uuid_generate_v4() as key, 1 as version
+            FROM privilege) AS sub;
+
+        -- set key to NOT NULL
+        ALTER TABLE privilege
+            ALTER COLUMN key SET NOT NULL;
 
         ALTER TABLE privilege_change
             ADD COLUMN "key" character varying(100),
@@ -239,5 +255,8 @@ $$
         CREATE INDEX fki_type_attribute_item_type_id_fk ON type_attribute USING btree (item_type_id);
 
         CREATE INDEX fki_type_attribute_link_type_id_fk ON type_attribute USING btree (link_type_id);
+
+        -- enable all triggers
+        SET session_replication_role = replica;
     END;
 $$
