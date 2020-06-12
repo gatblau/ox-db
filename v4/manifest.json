@@ -1,4 +1,5 @@
 {
+  "release": "4",
   "scripts": [
     {
       "name": "create the database",
