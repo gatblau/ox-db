@@ -1,143 +1,201 @@
 {
   "release": "4",
-  "scripts": [
+  "tasks": [
     {
-      "name": "create the database",
-      "file": "db.sql",
-      "type": "init",
-      "content": "saa",
-      "asAdmin": true,
-      "useDb": false,
-      "vars": [
-        {
-          "name": "<DB_NAME>",
-          "from": "Db.Name"
-        }
-      ]
+      "name": "init",
+      "description": "create the database for the first time",
+      "actions": ["create-db", "install-extensions"]
     },
     {
-      "name": "create the database user",
-      "file": "user.sql",
-      "type": "init",
-      "content": "saa",
+      "name": "deploy",
+      "description": "create the tables and functions",
+      "actions": ["deploy-schema", "deploy-fxs"]
+    },
+    {
+      "name": "upgrade",
+      "description": "upgrade the database to the specified version",
+      "actions": ["drop-fxs", "upgrade-schema", "deploy-fxs"]
+    },
+    {
+      "name": "install",
+      "description": "install the database from scratch",
+      "tasks": ["init","deploy"]
+    }
+  ],
+  "actions": [
+    {
+      "name": "create-db",
+      "description": "creates the database and user",
+      "transactional": false,
       "asAdmin": true,
       "useDb": false,
-      "vars": [
+      "scripts": [
         {
-          "name": "<DB_USER>",
-          "from": "Db.Username"
+          "name": "create the database",
+          "file": "db.sql",
+          "vars": [
+            {
+              "name": "<DB_NAME>",
+              "from": "Db.Name"
+            }
+          ]
         },
         {
-          "name": "<DB_PWD>",
-          "from": "Db.Password"
+          "name": "create the database user",
+          "file": "user.sql",
+          "content": "saa",
+          "vars": [
+            {
+              "name": "<DB_USER>",
+              "from": "Db.Username"
+            },
+            {
+              "name": "<DB_PWD>",
+              "from": "Db.Password"
+            }
+          ]
+        },
+        {
+          "name": "install hstore extension",
+          "file": "hstore.sql",
+          "vars": []
+        },
+        {
+          "name": "install intarray extension",
+          "file": "intarray.sql",
+          "vars": []
         }
       ]
     },
     {
-      "name": "install hstore extension",
-      "file": "hstore.sql",
-      "type": "init",
-      "content": "saa",
+      "name": "install-extensions",
+      "description": "installs the database extensions",
+      "transactional": true,
       "asAdmin": true,
       "useDb": true,
-      "vars": []
+      "scripts": [
+        {
+          "name": "install hstore extension",
+          "file": "hstore.sql",
+          "vars": []
+        },
+        {
+          "name": "install intarray extension",
+          "file": "intarray.sql",
+          "vars": []
+        }
+      ]
     },
     {
-      "name": "install intarray extension",
-      "file": "intarray.sql",
-      "type": "init",
-      "content": "saa",
-      "asAdmin": true,
-      "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "sql tables",
-      "file": "tables.sql",
-      "type": "schema",
+      "name": "deploy-schema",
+      "description": "deploy schemas",
+      "transactional": true,
       "asAdmin": false,
       "useDb": true,
-      "vars": []
+      "scripts": [
+        {
+          "name": "sql tables",
+          "file": "tables.sql",
+          "vars": []
+        }
+      ]
     },
     {
-      "name": "json schema validation",
-      "file": "json.sql",
-      "type": "objects",
+      "name": "deploy-fxs",
+      "description": "deploy functions",
+      "transactional": true,
       "asAdmin": false,
       "useDb": true,
-      "vars": []
+      "scripts": [
+        {
+          "name": "json schema validation",
+          "file": "json.sql",
+          "vars": []
+        },
+        {
+          "name": "general data validation",
+          "file": "validation.sql",
+          "vars": []
+        },
+        {
+          "name": "set functions",
+          "file": "set.sql",
+          "vars": []
+        },
+        {
+          "name": "get functions",
+          "file": "get.sql",
+          "vars": []
+        },
+        {
+          "name": "delete functions",
+          "file": "delete.sql",
+          "vars": []
+        },
+        {
+          "name": "general queries",
+          "file": "queries.sql",
+          "vars": []
+        },
+        {
+          "name": "tree management",
+          "file": "tree.sql",
+          "vars": []
+        },
+        {
+          "name": "tagging",
+          "file": "tags.sql",
+          "vars": []
+        },
+        {
+          "name": "encryption",
+          "file": "keyman.sql",
+          "vars": []
+        }
+      ]
     },
     {
-      "name": "general data validation",
-      "file": "validation.sql",
-      "type": "objects",
+      "name": "drop-fxs",
+      "description": "drop functions",
+      "transactional": true,
       "asAdmin": false,
       "useDb": true,
-      "vars": []
+      "scripts": [
+        {
+          "name": "drop existing functions",
+          "file": "dropfxs.sql",
+          "vars": [
+            {
+              "name": "<FX_PREFIX>",
+              "value": "ox_*"
+            }
+          ]
+        }
+      ]
     },
     {
-      "name": "set functions",
-      "file": "set.sql",
-      "type": "objects",
+      "name": "upgrade",
+      "description": "upgrade the database",
+      "transactional": true,
       "asAdmin": false,
       "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "get functions",
-      "file": "get.sql",
-      "type": "objects",
-      "asAdmin": false,
-      "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "delete functions",
-      "file": "delete.sql",
-      "type": "objects",
-      "asAdmin": false,
-      "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "general queries",
-      "file": "queries.sql",
-      "type": "objects",
-      "asAdmin": false,
-      "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "tree management",
-      "file": "tree.sql",
-      "type": "objects",
-      "asAdmin": false,
-      "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "tagging",
-      "file": "tags.sql",
-      "type": "objects",
-      "asAdmin": false,
-      "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "encryption",
-      "file": "keyman.sql",
-      "type": "objects",
-      "asAdmin": false,
-      "useDb": true,
-      "vars": []
-    },
-    {
-      "name": "upgrade from version 3",
-      "file": "upgrade.sql",
-      "type": "upgrade",
-      "asAdmin": false,
-      "useDb": true,
-      "vars": []
+      "scripts": [
+        {
+          "name": "drop functions",
+          "file": "dropfxs.sql",
+          "vars": [
+            {
+              "name": "<FX_FILTER>",
+              "value": "ox_*"
+            }
+          ]
+        },
+        {
+          "name": "upgrade tables",
+          "file": "upgrade.sql",
+          "vars": []
+        }
+      ]
     }
   ]
 }
