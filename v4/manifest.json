@@ -4,22 +4,38 @@
     {
       "name": "init",
       "description": "create the database for the first time",
-      "actions": ["create-db", "install-extensions"]
+      "actions": [
+        "create-db",
+        "install-extensions",
+        "create-version-table"
+      ]
     },
     {
       "name": "deploy",
       "description": "create the tables and functions",
-      "actions": ["deploy-schema", "deploy-fxs"]
+      "actions": [
+        "deploy-schema",
+        "deploy-fxs",
+        "update-release-version"
+      ]
     },
     {
       "name": "upgrade",
       "description": "upgrade the database to the specified version",
-      "actions": ["drop-fxs", "upgrade-schema", "deploy-fxs"]
+      "actions": [
+        "drop-fxs",
+        "upgrade-schema",
+        "deploy-fxs",
+        "update-release-version"
+      ]
     },
     {
       "name": "install",
       "description": "install the database from scratch",
-      "tasks": ["init","deploy"]
+      "tasks": [
+        "init",
+        "deploy"
+      ]
     }
   ],
   "actions": [
@@ -36,22 +52,21 @@
           "vars": [
             {
               "name": "<DB_NAME>",
-              "from": "Db.Name"
+              "fromConf": "Db.Name"
             }
           ]
         },
         {
           "name": "create the database user",
           "file": "user.sql",
-          "content": "saa",
           "vars": [
             {
               "name": "<DB_USER>",
-              "from": "Db.Username"
+              "fromConf": "Db.Username"
             },
             {
               "name": "<DB_PWD>",
-              "from": "Db.Password"
+              "fromConf": "Db.Password"
             }
           ]
         }
@@ -73,6 +88,47 @@
           "name": "install intarray extension",
           "file": "intarray.sql",
           "vars": []
+        }
+      ]
+    },
+    {
+      "name": "create-version-table",
+      "description": "create version tracking table",
+      "transactional": true,
+      "asAdmin": false,
+      "useDb": true,
+      "scripts": [
+        {
+          "name": "deploy-version-table",
+          "file": "version_table.sql",
+          "vars": []
+        }
+      ]
+    },
+    {
+      "name": "update-release-version",
+      "description": "update release information in version tracking table",
+      "transactional": true,
+      "asAdmin": false,
+      "useDb": true,
+      "scripts": [
+        {
+          "name": "update-version",
+          "file": "update_version.sql",
+          "vars": [
+            {
+              "name": "<APP_VERSION>",
+              "fromContext": "AppVersion"
+            },
+            {
+              "name": "<DB_VERSION>",
+              "fromContext": "DbVersion"
+            },
+            {
+              "name": "<SOURCE>",
+              "fromConf": "Schema.URI"
+            }
+          ]
         }
       ]
     },
@@ -176,7 +232,7 @@
           "vars": [
             {
               "name": "<FX_FILTER>",
-              "value": "ox_*"
+              "fromValue": "ox_*"
             }
           ]
         },
