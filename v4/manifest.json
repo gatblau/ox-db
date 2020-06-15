@@ -54,16 +54,6 @@
               "from": "Db.Password"
             }
           ]
-        },
-        {
-          "name": "install hstore extension",
-          "file": "hstore.sql",
-          "vars": []
-        },
-        {
-          "name": "install intarray extension",
-          "file": "intarray.sql",
-          "vars": []
         }
       ]
     },
