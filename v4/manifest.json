@@ -1,6 +1,9 @@
 {
-  "release": "4",
-  "tasks": [
+  "dbVersion": "4",
+  "description": "database release 4",
+  "commandsPath" : "command",
+  "queriesPath" : "query",
+  "commands": [
     {
       "name": "init",
       "description": "create the database for the first time",
@@ -32,7 +35,7 @@
     {
       "name": "install",
       "description": "install the database from scratch",
-      "tasks": [
+      "commands": [
         "init",
         "deploy"
       ]
@@ -240,6 +243,75 @@
           "name": "upgrade tables",
           "file": "upgrade.sql",
           "vars": []
+        }
+      ]
+    }
+  ],
+  "queries": [
+    {
+      "name": "versions",
+      "description": "get the information in the version tracking table",
+      "file": "get_version_history.sql",
+      "input": [
+      ],
+      "output": [
+        {
+          "name": "appVersion",
+          "description": "the application version",
+          "type": "string"
+        },
+        {
+          "name": "dbVersion",
+          "description": "the database version",
+          "type": "string"
+        },
+        {
+          "name": "time",
+          "description": "the release date and time",
+          "type": "date"
+        },
+        {
+          "name": "origin",
+          "description": "the source of the release scripts used",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "current-version",
+      "description": "get the current application and database version",
+      "file": "get_current_version.sql",
+      "input": [
+      ],
+      "output": [
+        {
+          "name": "appVersion",
+          "description": "the application version",
+          "type": "string"
+        },
+        {
+          "name": "dbVersion",
+          "description": "the database version",
+          "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "db-version",
+      "description": "get the database version for the specified application version",
+      "file": "get_db_version.sql",
+      "input": [
+        {
+          "name": "appVersion",
+          "description": "the application version",
+          "type": "string"
+        }
+      ],
+      "output": [
+        {
+          "name": "dbVersion",
+          "description": "the database version",
+          "type": "string"
         }
       ]
     }
