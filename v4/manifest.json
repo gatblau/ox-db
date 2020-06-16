@@ -3,6 +3,7 @@
   "description": "database release 4",
   "commandsPath" : "command",
   "queriesPath" : "query",
+  "dbProvider": "pgsql",
   "commands": [
     {
       "name": "init",
