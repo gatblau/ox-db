@@ -4,11 +4,11 @@
   "commandsPath" : "command",
   "queriesPath" : "query",
   "dbProvider": "pgsql",
-  "commands": [
+  "actions": [
     {
       "name": "init",
       "description": "create the database for the first time",
-      "actions": [
+      "commands": [
         "create-db",
         "install-extensions",
         "create-version-table"
@@ -17,7 +17,7 @@
     {
       "name": "deploy",
       "description": "create the tables and functions",
-      "actions": [
+      "commands": [
         "deploy-schema",
         "deploy-fxs",
         "update-release-version"
@@ -26,7 +26,7 @@
     {
       "name": "upgrade",
       "description": "upgrade the database to the specified version",
-      "actions": [
+      "commands": [
         "drop-fxs",
         "upgrade-schema",
         "deploy-fxs",
@@ -36,13 +36,13 @@
     {
       "name": "install",
       "description": "install the database from scratch",
-      "commands": [
+      "actions": [
         "init",
         "deploy"
       ]
     }
   ],
-  "actions": [
+  "commands": [
     {
       "name": "create-db",
       "description": "creates the database and user",
