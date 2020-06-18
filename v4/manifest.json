@@ -4,6 +4,12 @@
   "commandsPath" : "command",
   "queriesPath" : "query",
   "dbProvider": "pgsql",
+  "version": {
+    "current": "current-version",
+    "appVerParam": "appVersion",
+    "dbVerParam": "dbVersion",
+    "history": "version-history"
+  },
   "actions": [
     {
       "name": "init",
@@ -250,7 +256,7 @@
   ],
   "queries": [
     {
-      "name": "versions",
+      "name": "version-history",
       "description": "get the information in the version tracking table",
       "file": "get_version_history.sql",
       "input": [
