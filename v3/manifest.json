@@ -1,6 +1,6 @@
 {
-  "dbVersion": "4",
-  "description": "database release 4",
+  "dbVersion": "3",
+  "description": "database release 3",
   "commandsPath" : "command",
   "queriesPath" : "query",
   "dbProvider": "pgsql",
@@ -137,11 +137,6 @@
           "name": "tagging",
           "file": "tags.sql",
           "vars": []
-        },
-        {
-          "name": "encryption",
-          "file": "keyman.sql",
-          "vars": []
         }
       ]
     },
@@ -174,27 +169,5 @@
       ]
     }
   ],
-  "queries": [
-    {
-      "name": "version-history",
-      "description": "get the information in the version tracking table",
-      "file": "get_version_history.sql"
-    },
-    {
-      "name": "current-version",
-      "description": "get the current application and database version",
-      "file": "get_current_version.sql"
-    },
-    {
-      "name": "db-version",
-      "description": "get the database version for the specified application version",
-      "file": "get_db_version.sql",
-      "vars": [
-        {
-          "name": "<APP_VERSION>",
-          "fromInput": "appver"
-        }
-      ]
-    }
-  ]
+  "queries": []
 }

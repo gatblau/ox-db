@@ -1,0 +1,54 @@
+{
+  "scripts": [
+    {
+      "name": "create the database",
+      "file": "db.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": false,
+      "vars": [
+        {
+          "name": "<DB_NAME>",
+          "from": "Db.Name"
+        }
+      ]
+    },
+    {
+      "name": "create the database user",
+      "file": "user.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": false,
+      "vars": [
+        {
+          "name": "<DB_USER>",
+          "from": "Db.Username"
+        },
+        {
+          "name": "<DB_PWD>",
+          "from": "Db.Password"
+        }
+      ]
+    },
+    {
+      "name": "install hstore extension",
+      "file": "hstore.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": true,
+      "vars": []
+    },
+    {
+      "name": "install intarray extension",
+      "file": "intarray.sql",
+      "type": "init",
+      "content": "saa",
+      "asAdmin": true,
+      "useDb": true,
+      "vars": []
+    }
+  ]
+}
