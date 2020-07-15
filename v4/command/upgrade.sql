@@ -213,13 +213,11 @@ $$
             ADD COLUMN updated timestamp(6) with time zone,
             ADD CONSTRAINT privilege_key_uc UNIQUE (key);
 
-        -- populate key and version
-        UPDATE privilege SET key='ADMIN-REF', version=1 WHERE id = 1;
-        UPDATE privilege SET key='ADMIN-INS', version=1 WHERE id = 2;
-        UPDATE privilege SET key='READER-REF', version=1 WHERE id = 3;
-        UPDATE privilege SET key='READER-INS', version=1 WHERE id = 4;
-        UPDATE privilege SET key='WRITER-REF', version=1 WHERE id = 5;
-        UPDATE privilege SET key='WRITER-INS', version=1 WHERE id = 6;
+        -- populate auto-generated key and version
+        UPDATE privilege
+        SET key=sub.key, version=sub.version
+        FROM (SELECT id, 'P_' || id AS key, 1 AS version FROM privilege) AS sub
+        WHERE sub.id = privilege.id;
 
         -- set key to NOT NULL
         ALTER TABLE privilege
@@ -229,6 +227,20 @@ $$
             ADD COLUMN "key" character varying(100),
             ADD COLUMN version bigint,
             ADD COLUMN updated timestamp(6) with time zone;
+
+        -- populate auto-generated key and version
+        UPDATE privilege_change
+        SET key=sub.key, version=sub.version
+        FROM (SELECT id, 'P_' || id AS key, 1 AS version FROM privilege_change) AS sub
+        WHERE sub.id = privilege_change.id;
+
+        -- populate key and version
+        UPDATE privilege_change SET key='ADMIN-REF', version=1 WHERE id = 1;
+        UPDATE privilege_change SET key='ADMIN-INS', version=1 WHERE id = 2;
+        UPDATE privilege_change SET key='READER-REF', version=1 WHERE id = 3;
+        UPDATE privilege_change SET key='READER-INS', version=1 WHERE id = 4;
+        UPDATE privilege_change SET key='WRITER-REF', version=1 WHERE id = 5;
+        UPDATE privilege_change SET key='WRITER-INS', version=1 WHERE id = 6;
 
         ALTER TABLE membership
             ADD CONSTRAINT membership_id_pk PRIMARY KEY (id, user_id, role_id);
