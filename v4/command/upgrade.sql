@@ -214,12 +214,12 @@ $$
             ADD CONSTRAINT privilege_key_uc UNIQUE (key);
 
         -- populate key and version
-        UPDATE privilege
-        SET key=sub.key, version=sub.version
-        FROM (
-            SELECT uuid_in(md5(random()::text || clock_timestamp()::text)::cstring) as key, 1 as version
-            FROM privilege
-        ) AS sub;
+        UPDATE privilege SET key='ADMIN-REF', version=1 WHERE id = 1;
+        UPDATE privilege SET key='ADMIN-INS', version=1 WHERE id = 2;
+        UPDATE privilege SET key='READER-REF', version=1 WHERE id = 3;
+        UPDATE privilege SET key='READER-INS', version=1 WHERE id = 4;
+        UPDATE privilege SET key='WRITER-REF', version=1 WHERE id = 5;
+        UPDATE privilege SET key='WRITER-INS', version=1 WHERE id = 6;
 
         -- set key to NOT NULL
         ALTER TABLE privilege
