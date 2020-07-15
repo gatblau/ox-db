@@ -44,6 +44,44 @@ $$
             MINVALUE 100
             CACHE 1;
 
+        CREATE TABLE "user" (
+            id bigint DEFAULT nextval('public.user_id_seq'::regclass) NOT NULL,
+            "key" character varying(100) NOT NULL,
+            name character varying(200) NOT NULL,
+            email character varying(200) NOT NULL,
+            pwd character varying(300),
+            salt character varying(300),
+            expires timestamp(6) with time zone,
+            version bigint DEFAULT 1 NOT NULL,
+            created timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP(6),
+            updated timestamp(6) with time zone,
+            changed_by character varying(100) NOT NULL
+        );
+
+        -- generic users - should change passwords after first login
+        INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
+        VALUES (1, 'admin', 'Administrator', 'admin@onix.com', 'E2BgmQs4vH4rYvj5Fe0p9DbZUKU=', '8DZMiAR+XGA=', 1, 'onix');
+        INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
+        VALUES (2, 'reader', 'Reader', 'reader@onix.com', '/EvDpP8kHkfd30mXk+Ne9aA4h5o=', 'B0zo+y0Keiw=', 1, 'onix');
+        INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
+        VALUES (3, 'writer', 'Writer', 'writer@onix.com', 'DkV3uMWjAjHSTZnW9TkJNI6XOzU=', 'yWJm38+RPtc=', 1, 'onix');
+
+        CREATE TABLE user_change (
+             "operation" character(1) NOT NULL,
+             changed timestamp without time zone NOT NULL,
+             id bigint,
+             "key" character varying(100),
+             name character varying(200),
+             email character varying(200),
+             pwd character varying(300),
+             salt character varying(300),
+             expires timestamp(6) with time zone,
+             version bigint,
+             created timestamp(6) with time zone,
+             updated timestamp(6) with time zone,
+             changed_by character varying(100) NOT NULL
+        );
+
         CREATE TABLE membership (
             id bigint DEFAULT nextval('public.membership_id_seq'::regclass) NOT NULL,
             "key" character varying(100) NOT NULL,
@@ -54,6 +92,13 @@ $$
             updated timestamp(6) with time zone,
             changed_by character varying(100) NOT NULL
         );
+
+        INSERT INTO membership(id, key, user_id, role_id, changed_by, version)
+        VALUES (1, 'ADMIN-MEMBER', 1, 1, 'onix', 1);
+        INSERT INTO membership(id, key, user_id, role_id, changed_by, version)
+        VALUES (1, 'READER-MEMBER', 2, 2, 'onix', 1);
+        INSERT INTO membership(id, key, user_id, role_id, changed_by, version)
+        VALUES (1, 'WRITER-MEMBER', 3, 3, 'onix', 1);
 
         CREATE TABLE membership_change (
             "operation" character(1) NOT NULL,
@@ -100,44 +145,6 @@ $$
             link_type_id integer,
             version bigint DEFAULT 1 NOT NULL,
             created timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP(6),
-            updated timestamp(6) with time zone,
-            changed_by character varying(100) NOT NULL
-        );
-
-        CREATE TABLE "user" (
-            id bigint DEFAULT nextval('public.user_id_seq'::regclass) NOT NULL,
-            "key" character varying(100) NOT NULL,
-            name character varying(200) NOT NULL,
-            email character varying(200) NOT NULL,
-            pwd character varying(300),
-            salt character varying(300),
-            expires timestamp(6) with time zone,
-            version bigint DEFAULT 1 NOT NULL,
-            created timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP(6),
-            updated timestamp(6) with time zone,
-            changed_by character varying(100) NOT NULL
-        );
-
-        -- generic users - should change passwords after first login
-        INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
-        VALUES (1, 'admin', 'Administrator', 'admin@onix.com', 'E2BgmQs4vH4rYvj5Fe0p9DbZUKU=', '8DZMiAR+XGA=', 1, 'onix');
-        INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
-        VALUES (2, 'reader', 'Reader', 'reader@onix.com', '/EvDpP8kHkfd30mXk+Ne9aA4h5o=', 'B0zo+y0Keiw=', 1, 'onix');
-        INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
-        VALUES (3, 'writer', 'Writer', 'writer@onix.com', 'DkV3uMWjAjHSTZnW9TkJNI6XOzU=', 'yWJm38+RPtc=', 1, 'onix');
-
-        CREATE TABLE user_change (
-            "operation" character(1) NOT NULL,
-            changed timestamp without time zone NOT NULL,
-            id bigint,
-            "key" character varying(100),
-            name character varying(200),
-            email character varying(200),
-            pwd character varying(300),
-            salt character varying(300),
-            expires timestamp(6) with time zone,
-            version bigint,
-            created timestamp(6) with time zone,
             updated timestamp(6) with time zone,
             changed_by character varying(100) NOT NULL
         );
