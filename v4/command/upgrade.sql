@@ -234,14 +234,6 @@ $$
         FROM (SELECT id, 'P_' || id AS key, 1 AS version FROM privilege_change) AS sub
         WHERE sub.id = privilege_change.id;
 
-        -- populate key and version
-        UPDATE privilege_change SET key='ADMIN-REF', version=1 WHERE id = 1;
-        UPDATE privilege_change SET key='ADMIN-INS', version=1 WHERE id = 2;
-        UPDATE privilege_change SET key='READER-REF', version=1 WHERE id = 3;
-        UPDATE privilege_change SET key='READER-INS', version=1 WHERE id = 4;
-        UPDATE privilege_change SET key='WRITER-REF', version=1 WHERE id = 5;
-        UPDATE privilege_change SET key='WRITER-INS', version=1 WHERE id = 6;
-
         ALTER TABLE membership
             ADD CONSTRAINT membership_id_pk PRIMARY KEY (id, user_id, role_id);
 
