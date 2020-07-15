@@ -272,6 +272,6 @@ $$
         CREATE INDEX fki_type_attribute_link_type_id_fk ON type_attribute USING btree (link_type_id);
 
         -- enable all triggers
-        SET session_replication_role = replica;
+        SET session_replication_role = default;
     END;
 $$
