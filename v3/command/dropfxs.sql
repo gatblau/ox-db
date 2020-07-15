@@ -9,7 +9,7 @@ $$
             SELECT routines.routine_name as fx_name
             FROM information_schema.routines
             WHERE routines.specific_schema='public'
-            AND routines.routine_name SIMILAR TO 'ox_'
+            AND routines.routine_name SIMILAR TO 'ox_*'
             ORDER BY routines.routine_name
         LOOP
             DROP_STATEMENT = 'DROP FUNCTION IF EXISTS ' || rec.fx_name || ' CASCADE;';
