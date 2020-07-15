@@ -20,9 +20,9 @@
   },
   "upgrade": {
     "description": "upgrade an existing database to the new version",
-    "pre-schema": "drop-fxs",
-    "schema": "upgrade-tables",
-    "post-schema": "deploy-fxs"
+    "prepare": "drop-fxs",
+    "alter": "upgrade-tables",
+    "deploy": "deploy-fxs"
   },
   "commands": [
     {

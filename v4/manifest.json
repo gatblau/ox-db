@@ -20,9 +20,9 @@
   },
   "upgrade": {
     "description": "upgrade an existing database to the new version",
-    "pre-schema": "drop-fxs",
-    "schema": "upgrade-tables",
-    "post-schema": "deploy-fxs"
+    "prepare": "drop-fxs",
+    "alter": "upgrade-tables",
+    "deploy": "deploy-fxs"
   },
   "commands": [
     {
@@ -163,7 +163,7 @@
       "name": "upgrade-tables",
       "description": "upgrade the database tables",
       "transactional": true,
-      "asAdmin": false,
+      "asAdmin": true,
       "useDb": true,
       "scripts": [
         {
