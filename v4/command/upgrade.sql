@@ -18,8 +18,6 @@
 DO
 $$
     BEGIN
-        CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
-
         -- disable all triggers
         SET session_replication_role = replica;
 
@@ -212,14 +210,16 @@ $$
         ALTER TABLE privilege
             ADD COLUMN "key" character varying(100),
             ADD COLUMN version bigint,
-            ADD COLUMN updated timestamp(6) with time zone;
+            ADD COLUMN updated timestamp(6) with time zone,
+            ADD CONSTRAINT privilege_key_uc UNIQUE (key);
 
         -- populate key and version
         UPDATE privilege
         SET key=sub.key, version=sub.version
         FROM (
-            SELECT uuid_generate_v4() as key, 1 as version
-            FROM privilege) AS sub;
+            SELECT uuid_in(md5(random()::text || clock_timestamp()::text)::cstring) as key, 1 as version
+            FROM privilege
+        ) AS sub;
 
         -- set key to NOT NULL
         ALTER TABLE privilege

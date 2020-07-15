@@ -332,6 +332,7 @@ DO
           updated      timestamp(6) with time zone,
           changed_by   CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default",
           CONSTRAINT privilege_id_pk PRIMARY KEY (id, role_id, partition_id),
+          CONSTRAINT privilege_key_uc UNIQUE (key),
           CONSTRAINT privilege_role_id_fk FOREIGN KEY (role_id)
             REFERENCES role (id) MATCH SIMPLE
             ON UPDATE NO ACTION
