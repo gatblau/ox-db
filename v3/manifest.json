@@ -21,7 +21,6 @@
   "upgrade": {
     "description": "upgrade an existing database to the new version",
     "prepare": "drop-fxs",
-    "alter": "upgrade-tables",
     "deploy": "deploy-fxs"
   },
   "commands": [
@@ -150,20 +149,6 @@
         {
           "name": "drop existing functions",
           "file": "dropfxs.sql",
-          "vars": []
-        }
-      ]
-    },
-    {
-      "name": "upgrade-tables",
-      "description": "upgrade the database tables",
-      "transactional": true,
-      "asAdmin": false,
-      "useDb": true,
-      "scripts": [
-        {
-          "name": "upgrade tables",
-          "file": "upgrade.sql",
           "vars": []
         }
       ]
