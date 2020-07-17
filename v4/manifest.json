@@ -192,6 +192,7 @@
       "vars": [
         {
           "name": "<APP_VERSION>",
+          "description": "the version of the application matching the database version",
           "fromInput": "appver"
         }
       ]
