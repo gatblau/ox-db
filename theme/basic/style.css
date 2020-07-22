@@ -17,11 +17,11 @@ div.alt {
 }
 /* define the footer style */
 .footer {
-    padding: 1px;
-    text-align: center;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     background: #2347a1;
     color: white;
-    position:absolute;
-    bottom:0;
-    left:0;
+    text-align: center;
 }
