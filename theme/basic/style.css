@@ -7,10 +7,18 @@ div.head {
 div.alt {
     background: #faf198;
 }
+/* define the header style */
 .header {
-    padding: 20px;
+    padding: 1px;
     text-align: center;
     background: #2347a1;
     color: white;
-    font-size: 30px;
+    font-size: 20px;
+}
+/* define the footer style */
+.footer {
+    padding: 1px;
+    text-align: center;
+    background: #2347a1;
+    color: white;
 }
