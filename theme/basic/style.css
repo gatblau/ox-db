@@ -7,3 +7,10 @@ div.head {
 div.alt {
     background: #faf198;
 }
+.header {
+    padding: 60px;
+    text-align: center;
+    background: #2347a1;
+    color: white;
+    font-size: 30px;
+}
