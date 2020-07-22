@@ -21,4 +21,7 @@ div.alt {
     text-align: center;
     background: #2347a1;
     color: white;
+    position:absolute;
+    bottom:0;
+    left:0;
 }
