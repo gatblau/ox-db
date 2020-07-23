@@ -191,9 +191,9 @@
       "file": "get_db_version.sql",
       "vars": [
         {
-          "name": "<APP_VERSION>",
+          "name": "APP_VERSION",
           "description": "the version of the application matching the database version",
-          "fromInput": "appver"
+          "fromInput": "appVersion"
         }
       ]
     }

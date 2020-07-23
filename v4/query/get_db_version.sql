@@ -1,5 +1,5 @@
 SELECT dbVersion
 FROM "version"
-WHERE COALESCE('<APP_VERSION>',appVersion) = appVersion
+WHERE COALESCE('{{AppVersion}}',appVersion) = appVersion
 ORDER BY time DESC
 LIMIT 1
