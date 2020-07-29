@@ -47,11 +47,11 @@
           "file": "user.sql",
           "vars": [
             {
-              "name": "<DB_USER>",
+              "name": "DB_USER",
               "fromConf": "Db.Username"
             },
             {
-              "name": "<DB_PWD>",
+              "name": "DB_PWD",
               "fromConf": "Db.Password"
             }
           ]
