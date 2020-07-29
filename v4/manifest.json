@@ -37,7 +37,7 @@
           "file": "db.sql",
           "vars": [
             {
-              "name": "<DB_NAME>",
+              "name": "DB_NAME",
               "fromConf": "Db.Name"
             }
           ]
