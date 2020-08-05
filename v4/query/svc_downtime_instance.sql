@@ -1,6 +1,6 @@
 -- shows the downtime of each of the application instances of a service
 select up.platform,
-       up.service,
+       '{{SERVICE}}',
        up.location,
        down.eventTime as downAt,
        up.eventTime as upAt,
