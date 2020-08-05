@@ -196,6 +196,18 @@
           "fromInput": "appVersion"
         }
       ]
+    },
+    {
+      "name": "svc-down-instance",
+      "description": "shows the downtime of specific instances that make up an application service",
+      "file": "svc_downtime_instance.sql",
+      "vars": [
+        {
+          "name": "SERVICE",
+          "description": "the name of the service to check for downtime",
+          "fromInput": "svc"
+        }
+      ]
     }
   ]
 }
