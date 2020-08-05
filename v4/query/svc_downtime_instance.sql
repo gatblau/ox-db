@@ -1,10 +1,10 @@
 -- shows the downtime of each of the application instances of a service
 select up.platform,
-       '{{SERVICE}}',
+       '{{SERVICE}}' as service,
        up.location,
-       down.eventTime as downAt,
-       up.eventTime as upAt,
-       (up.eventTime - down.eventTime) as downTime
+       down.eventTime as went_down_at,
+       up.eventTime as went_up_at,
+       (up.eventTime - down.eventTime) as downtime
 from
     (
         -- retrieve all entries with 'up' status for {{SERVICE}}
