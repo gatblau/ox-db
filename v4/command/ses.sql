@@ -40,14 +40,14 @@ $$
         BEGIN
             RETURN QUERY
                 SELECT CAST(attribute -> 'platform' AS CHARACTER VARYING) AS platform_param,
-                       CAST(attribute -> 'name' AS CHARACTER VARYING)     AS service_param,
+                       CAST(attribute -> 'service' AS CHARACTER VARYING)  AS service_param,
                        CAST(attribute -> 'facet' AS CHARACTER VARYING)    AS facet_param,
                        CAST(attribute -> 'status' AS CHARACTER VARYING)   AS status,
                        CAST(attribute -> 'location' AS CHARACTER VARYING) AS location,
                        CAST(attribute -> 'time' AS TIMESTAMP)             AS check_time
                 FROM item_change
                 WHERE attribute -> 'platform' = COALESCE(platform_param, attribute -> 'platform')
-                  AND attribute -> 'name' = COALESCE(service_param, attribute -> 'name')
+                  AND attribute -> 'service' = COALESCE(service_param, attribute -> 'service')
                   AND attribute -> 'facet' = COALESCE(facet_param, attribute -> 'facet');
         END;
         $BODY$;
