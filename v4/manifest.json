@@ -142,6 +142,11 @@
           "name": "encryption",
           "file": "keyman.sql",
           "vars": []
+        },
+        {
+          "name": "service events",
+          "file": "ses.sql",
+          "vars": []
         }
       ]
     },
@@ -205,7 +210,29 @@
         {
           "name": "SERVICE",
           "description": "the name of the service to check for downtime",
-          "fromInput": "svc"
+          "fromInput": "service"
+        }
+      ]
+    },
+    {
+      "name": "svc-instance-count",
+      "description": "shows a chronological list of events with the count of instances which are up and running",
+      "file": "svc_instance_count.sql",
+      "vars": [
+        {
+          "name": "PLATFORM",
+          "description": "the name of the platform under which the service is running",
+          "fromInput": "platform"
+        },
+        {
+          "name": "SERVICE",
+          "description": "the name of the service to check for downtime",
+          "fromInput": "service"
+        },
+        {
+          "name": "FACET",
+          "description": "the name of the service aspect on which to report",
+          "fromInput": "facet"
         }
       ]
     }
