@@ -36,7 +36,7 @@
           "file": "db.sql",
           "vars": [
             {
-              "name": "<DB_NAME>",
+              "name": "DB_NAME",
               "fromConf": "Db.Name"
             }
           ]
@@ -46,11 +46,11 @@
           "file": "user.sql",
           "vars": [
             {
-              "name": "<DB_USER>",
+              "name": "DB_USER",
               "fromConf": "Db.Username"
             },
             {
-              "name": "<DB_PWD>",
+              "name": "DB_PWD",
               "fromConf": "Db.Password"
             }
           ]
