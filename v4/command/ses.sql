@@ -53,30 +53,32 @@ $$
         $BODY$;
 
         /*
-         returns a series of chronological events comprising status, location, time and total number of up instances
-         for a specific platform, service and facet combination
+         returns a series of chronological service events comprising status, location, time, and time under a certain
+         threshold based on number of facets under a specific count.
          */
-        CREATE OR REPLACE FUNCTION ox_ses_events_up_count(platform_param CHARACTER VARYING,
-                                                          service_param CHARACTER VARYING,
-                                                          facet_param CHARACTER VARYING)
-            RETURNS TABLE
-                    (
-                        platform   CHARACTER VARYING,
-                        service    CHARACTER VARYING,
-                        facet      CHARACTER VARYING,
-                        status     CHARACTER VARYING,
-                        location   CHARACTER VARYING,
-                        check_time TIMESTAMP,
-                        up_total   INT
-                    )
+        CREATE OR REPLACE FUNCTION public.ox_ses_events_threshold(
+            platform_param character varying,
+            service_param character varying,
+            facet_param character varying,
+            facet_count_threshhold int)
+            RETURNS TABLE(platform character varying,
+                          service character varying,
+                          facet character varying,
+                          status character varying,
+                          location character varying,
+                          check_time timestamp without time zone,
+                          facet_up_total integer,
+                          under_threshold_time interval)
             LANGUAGE 'plpgsql'
             COST 100
             VOLATILE
-        AS
-        $BODY$
+            ROWS 1000
+        AS $BODY$
         DECLARE
             r     RECORD;
             count INT;
+            start_time TIMESTAMP;
+            under_threshold_time_value INTERVAL = '0m';
         BEGIN
             CREATE TEMP TABLE temp_status
             (
@@ -84,9 +86,10 @@ $$
                 service    CHARACTER VARYING,
                 facet      CHARACTER VARYING,
                 status     CHARACTER VARYING,
-                location   CHARACTER VARYING,
+                location  CHARACTER VARYING,
                 check_time TIMESTAMP,
-                up_total   INT
+                facet_up_total   INT,
+                under_threshold_time   INTERVAL
             );
             count = 0;
             FOR r IN
@@ -94,8 +97,18 @@ $$
                 FROM ox_ses_events(platform_param, service_param, facet_param)
                 LOOP
                     IF r.status = 'up' THEN
+                        -- if going above the threshold
+                        IF count = facet_count_threshhold - 1 THEN
+                            under_threshold_time_value = r.check_time - coalesce(start_time, r.check_time);
+                        ELSE
+                            under_threshold_time_value = '0m';
+                        END IF;
                         count = count + 1;
                     ELSIF r.status = 'down' THEN
+                        -- if going below the threshold
+                        IF count = facet_count_threshhold THEN
+                            start_time = r.check_time;
+                        END IF;
                         count = count - 1;
                     END IF;
                     INSERT INTO temp_status(platform,
@@ -104,14 +117,16 @@ $$
                                             status,
                                             location,
                                             check_time,
-                                            up_total)
+                                            facet_up_total,
+                                            under_threshold_time)
                     VALUES (r.platform,
                             r.service,
                             r.facet,
                             r.status,
                             r.location,
                             r.check_time,
-                            count);
+                            count,
+                            under_threshold_time_value);
                 END LOOP;
             RETURN QUERY
                 SELECT *
