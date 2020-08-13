@@ -22,8 +22,8 @@ DO
       THEN
         CREATE SEQUENCE user_id_seq
           INCREMENT 1
-          START 100
-          MINVALUE 100
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -123,8 +123,8 @@ DO
       THEN
         CREATE SEQUENCE partition_id_seq
           INCREMENT 1
-          START 100
-          MINVALUE 100
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -215,8 +215,8 @@ DO
       THEN
         CREATE SEQUENCE role_id_seq
           INCREMENT 1
-          START 100
-          MINVALUE 100
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -311,8 +311,8 @@ DO
       THEN
         CREATE SEQUENCE privilege_id_seq
           INCREMENT 1
-          START 10
-          MINVALUE 10
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -419,8 +419,8 @@ DO
       THEN
         CREATE SEQUENCE membership_id_seq
           INCREMENT 1
-          START 10
-          MINVALUE 10
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -514,8 +514,8 @@ DO
       THEN
         CREATE SEQUENCE model_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -607,8 +607,8 @@ DO
       THEN
         CREATE SEQUENCE item_type_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -720,8 +720,8 @@ DO
       THEN
         CREATE SEQUENCE item_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -850,8 +850,8 @@ DO
       THEN
         CREATE SEQUENCE link_type_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -957,8 +957,8 @@ DO
       THEN
         CREATE SEQUENCE link_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -1095,8 +1095,8 @@ DO
       THEN
         CREATE SEQUENCE link_rule_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -1213,8 +1213,8 @@ DO
       THEN
         CREATE SEQUENCE tag_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
@@ -1312,8 +1312,8 @@ DO
       THEN
         CREATE SEQUENCE type_attribute_id_seq
           INCREMENT 1
-          START 1
-          MINVALUE 1
+          START 1000
+          MINVALUE 1000
           MAXVALUE 9223372036854775807
           CACHE 1;
 
