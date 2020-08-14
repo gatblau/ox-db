@@ -15,7 +15,8 @@
     "description": "deploy the database objects in a new database",
     "commands": [
       "deploy-schema",
-      "deploy-fxs"
+      "deploy-fxs",
+      "install-models"
     ]
   },
   "upgrade": {
@@ -146,6 +147,20 @@
         {
           "name": "service events",
           "file": "ses.sql",
+          "vars": []
+        }
+      ]
+    },
+    {
+      "name": "install-models",
+      "description": "create information models",
+      "transactional": true,
+      "asAdmin": false,
+      "useDb": true,
+      "scripts": [
+        {
+          "name": "universal model",
+          "file": "u.sql",
           "vars": []
         }
       ]
