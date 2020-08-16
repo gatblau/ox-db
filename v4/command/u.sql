@@ -33,13 +33,13 @@ INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_
 VALUES (1, 'U_PLATFORM_TO_ZONE', 'Platform -> Zone Rule', 'Connects Platforms with Zones', 1, 1, 2, 1, 'onix');
 
 INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_id, end_item_type_id, version, changed_by)
-VALUES (1, 'U_ZONE_TO_HOST', 'Zone -> Host Rule', 'Connects Zones with Hosts', 1, 2, 3, 1, 'onix');
+VALUES (2, 'U_ZONE_TO_HOST', 'Zone -> Host Rule', 'Connects Zones with Hosts', 1, 2, 3, 1, 'onix');
 
 INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_id, end_item_type_id, version, changed_by)
-VALUES (1, 'U_HOST_TO_WORKLOAD', 'Host -> Workload Rule', 'Connects Hosts with Application Workloads', 1, 3, 5, 1, 'onix');
+VALUES (3, 'U_HOST_TO_WORKLOAD', 'Host -> Workload Rule', 'Connects Hosts with Application Workloads', 1, 3, 5, 1, 'onix');
 
 INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_id, end_item_type_id, version, changed_by)
-VALUES (1, 'U_APP_TO_WORKLOAD', 'App -> Workload Rule', 'Connects Applications with their Workloads', 1, 4, 5, 1, 'onix');
+VALUES (4, 'U_APP_TO_WORKLOAD', 'App -> Workload Rule', 'Connects Applications with their Workloads', 1, 4, 5, 1, 'onix');
 
 INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_id, end_item_type_id, version, changed_by)
-VALUES (1, 'U_ENVIRONMENT_TO_APP', 'Environment -> App Rule', 'Connects Environments to the Applications running on them', 1, 6, 4, 1, 'onix');
+VALUES (5, 'U_ENVIRONMENT_TO_APP', 'Environment -> App Rule', 'Connects Environments to the Applications running on them', 1, 6, 4, 1, 'onix');
