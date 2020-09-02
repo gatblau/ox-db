@@ -753,9 +753,9 @@ DO $$
             description != description_param OR
             status != status_param OR
             item_type_id != item_type_id_value OR
-            (meta IS NOT NULL AND meta != meta_param) OR -- a null meta indicates the client does not want to update it
+            (meta_param IS NOT NULL AND meta != meta_param) OR -- a null meta param indicates the client does not want to update it
             meta_enc != meta_enc_param OR
-            (txt IS NOT NULL AND txt != txt_param) OR -- a null txt indicates the client does not want to update it
+            (txt_param IS NOT NULL AND txt != txt_param) OR -- a null txt param indicates the client does not want to update it
             txt_enc != txt_enc_param OR
             enc_key_ix != enc_key_ix_param OR
             tag != tag_param OR
