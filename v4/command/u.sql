@@ -13,7 +13,7 @@ INSERT INTO item_type(id, key, name, description, version, changed_by, model_id,
 VALUES (3, 'U_HOST', 'Host', 'A a computer or other device connected to a computer network', 1, 'onix', 1, 'N');
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change, encrypt_txt)
-VALUES (4, 'U_APPLICATION', 'Application', 'The logical representation of a computer software', 1, 'onix', 1, 'N', true);
+VALUES (4, 'U_APPLICATION', 'Application', 'The logical representation of a computer software', 1, 'onix', 1, 'I', true);
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change)
 VALUES (5, 'U_WORKLOAD', 'Workload', 'A process running on a the platform, which represents an instance of an application', 1, 'onix', 1, 'N');
