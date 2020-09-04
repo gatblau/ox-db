@@ -97,7 +97,7 @@ DO $$
            description_param,
            1,
            current_timestamp,
-           null,
+           current_timestamp,
            changed_by_param,
            role_key_param
         );
@@ -183,7 +183,7 @@ DO $$
            description_param,
            1,
            current_timestamp,
-           null,
+           current_timestamp,
            changed_by_param,
            role_key_param,
            role_level_param
@@ -279,7 +279,7 @@ DO $$
                expires_param,
                1,
                current_timestamp,
-               null,
+               current_timestamp,
                changed_by_param
             );
             result := 'I';
@@ -484,7 +484,7 @@ DO $$
           managed_param,
           1,
           current_timestamp,
-          null,
+          current_timestamp,
           changed_by_param,
           partition_id_value
         );
@@ -672,7 +672,7 @@ DO $$
             item_type_id_value,
             1,
             current_timestamp,
-            null,
+            current_timestamp,
             changed_by_param,
             partition_id_value
         );
@@ -890,7 +890,7 @@ DO $$
           meta_schema_param,
           1,
           current_timestamp,
-          null,
+          current_timestamp,
           changed_by_param,
           model_id_value,
           notify_change_param,
@@ -1050,7 +1050,7 @@ DO $$
                 style_param,
                 1,
                 current_timestamp,
-                null,
+                current_timestamp,
                 changed_by_param,
                 model_id_value);
         result := 'I';
@@ -1251,7 +1251,7 @@ DO $$
           attribute_param,
           1,
           current_timestamp,
-          null,
+          current_timestamp,
           changed_by_param
         );
         result := 'I';
@@ -1452,7 +1452,7 @@ DO $$
           end_item_type_id_value,
           1,
           current_timestamp,
-          null,
+          current_timestamp,
           changed_by_param
         );
         result := 'I';
@@ -1602,7 +1602,7 @@ DO $$
             can_delete_param,
             1,
             current_timestamp,
-            null,
+            current_timestamp,
             changed_by_param
           );
           result := 'I';
@@ -1753,7 +1753,7 @@ DO $$
                 link_type_id_value,
                 1,
                 current_timestamp,
-                null,
+                current_timestamp,
                 changed_by_param
            );
             result := 'I';
