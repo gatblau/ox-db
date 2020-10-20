@@ -116,13 +116,13 @@ DO
           OWNER to onix;
       END IF;
 
-      -- generic users - should change passwords after first login
-      INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
-        VALUES (1, 'admin', 'Administrator', 'admin@onix.com', 'E2BgmQs4vH4rYvj5Fe0p9DbZUKU=', '8DZMiAR+XGA=', 1, 'onix');
-      INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
-        VALUES (2, 'reader', 'Reader', 'reader@onix.com', '/EvDpP8kHkfd30mXk+Ne9aA4h5o=', 'B0zo+y0Keiw=', 1, 'onix');
-      INSERT INTO "user"(id, key, name, email, pwd, salt, version, changed_by)
-        VALUES (3, 'writer', 'Writer', 'writer@onix.com', 'DkV3uMWjAjHSTZnW9TkJNI6XOzU=', 'yWJm38+RPtc=', 1, 'onix');
+      -- generic service user accounts - should change passwords after database deployment
+      INSERT INTO "user"(id, key, name, pwd, service, salt, version, changed_by)
+        VALUES (1, 'admin', 'Administrator', 'E2BgmQs4vH4rYvj5Fe0p9DbZUKU=', '8DZMiAR+XGA=', true, 1, 'onix');
+      INSERT INTO "user"(id, key, name, pwd, service, salt, version, changed_by)
+        VALUES (2, 'reader', 'Reader', '/EvDpP8kHkfd30mXk+Ne9aA4h5o=', 'B0zo+y0Keiw=', true, 1, 'onix');
+      INSERT INTO "user"(id, key, name, pwd, service, salt, version, changed_by)
+        VALUES (3, 'writer', 'Writer', 'DkV3uMWjAjHSTZnW9TkJNI6XOzU=', 'yWJm38+RPtc=', true, 1, 'onix');
 
       ---------------------------------------------------------------------------
       -- PARTITION
