@@ -30,29 +30,36 @@ DO
         ALTER SEQUENCE user_id_seq
           OWNER TO onix;
 
-        CREATE TABLE "user"
-        (
-          id          BIGINT                 NOT NULL DEFAULT nextval('user_id_seq'::regclass),
-          key         CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default",
-          name        CHARACTER VARYING(200) NOT NULL COLLATE pg_catalog."default",
-          email       CHARACTER VARYING(200) NOT NULL COLLATE pg_catalog."default",
-          pwd         CHARACTER VARYING(300) COLLATE pg_catalog."default",
-          salt        CHARACTER VARYING(300) COLLATE pg_catalog."default",
-          expires     TIMESTAMP(6) WITH TIME ZONE,
-          version     BIGINT                 NOT NULL DEFAULT 1,
-          created     TIMESTAMP(6) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP(6),
-          updated     TIMESTAMP(6) WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP(6),
-          changed_by  CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default",
-          CONSTRAINT user_id_pk PRIMARY KEY (id),
-          CONSTRAINT user_key_uc UNIQUE (key),
-          CONSTRAINT user_name_uc UNIQUE (name),
-          CONSTRAINT user_email_uc UNIQUE (email),
-          CONSTRAINT valid_email CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$')
-        )
-          WITH (
-            OIDS = FALSE
+          CREATE TABLE "user"
+          (
+              id         BIGINT                 NOT NULL DEFAULT nextval('user_id_seq'::regclass),
+              key        CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default",
+              name       CHARACTER VARYING(200) NOT NULL COLLATE pg_catalog."default",
+              email      CHARACTER VARYING(200) NOT NULL COLLATE pg_catalog."default",
+              pwd        CHARACTER VARYING(300) COLLATE pg_catalog."default",
+              salt       CHARACTER VARYING(300) COLLATE pg_catalog."default",
+              expires    TIMESTAMP(6) WITH TIME ZONE,
+              service    BOOLEAN                         DEFAULT FALSE,
+              version    BIGINT                 NOT NULL DEFAULT 1,
+              created    TIMESTAMP(6) WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP(6),
+              updated    TIMESTAMP(6) WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP(6),
+              changed_by CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default",
+              CONSTRAINT user_id_pk PRIMARY KEY (id),
+              CONSTRAINT user_key_uc UNIQUE (key),
+              CONSTRAINT user_name_uc UNIQUE (name),
+              CONSTRAINT user_email_uc UNIQUE (email),
+              CONSTRAINT valid_email CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'),
+              -- service accounts do not have emails
+              CONSTRAINT service_no_email CHECK ((email IS NULL AND service = TRUE) OR
+                                                 (email IS NOT NULL AND service = FALSE)),
+              -- service accounts do not have an expiration date
+              CONSTRAINT service_no_expiry CHECK ((service = TRUE AND expires IS NULL) OR
+                                                  (service = FALSE))
           )
-          TABLESPACE pg_default;
+              WITH (
+                  OIDS = FALSE
+              )
+              TABLESPACE pg_default;
 
         ALTER TABLE "user"
           OWNER to onix;
@@ -64,22 +71,23 @@ DO
       ---------------------------------------------------------------------------
       IF NOT EXISTS(SELECT relname FROM pg_class WHERE relname = 'user_change')
       THEN
-        CREATE TABLE user_change
-        (
-          operation   CHAR(1)                NOT NULL,
-          changed     TIMESTAMP              NOT NULL,
-          id          BIGINT,
-          key         CHARACTER VARYING(100) COLLATE pg_catalog."default",
-          name        CHARACTER VARYING(200) COLLATE pg_catalog."default",
-          email       CHARACTER VARYING(200) COLLATE pg_catalog."default",
-          pwd         CHARACTER VARYING(300) COLLATE pg_catalog."default",
-          salt        CHARACTER VARYING(300) COLLATE pg_catalog."default",
-          expires     TIMESTAMP(6) WITH TIME ZONE,
-          version     BIGINT,
-          created     TIMESTAMP(6) WITH TIME ZONE,
-          updated     TIMESTAMP(6) WITH TIME ZONE,
-          changed_by  CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default"
-        );
+          CREATE TABLE user_change
+          (
+              operation  CHAR(1)                NOT NULL,
+              changed    TIMESTAMP              NOT NULL,
+              id         BIGINT,
+              key        CHARACTER VARYING(100) COLLATE pg_catalog."default",
+              name       CHARACTER VARYING(200) COLLATE pg_catalog."default",
+              email      CHARACTER VARYING(200) COLLATE pg_catalog."default",
+              pwd        CHARACTER VARYING(300) COLLATE pg_catalog."default",
+              salt       CHARACTER VARYING(300) COLLATE pg_catalog."default",
+              expires    TIMESTAMP(6) WITH TIME ZONE,
+              service    BOOLEAN DEFAULT FALSE,
+              version    BIGINT,
+              created    TIMESTAMP(6) WITH TIME ZONE,
+              updated    TIMESTAMP(6) WITH TIME ZONE,
+              changed_by CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default"
+          );
 
         CREATE OR REPLACE FUNCTION ox_change_user() RETURNS TRIGGER AS
         $user_change$
