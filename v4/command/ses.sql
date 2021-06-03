@@ -47,7 +47,7 @@ $$
                        CAST(attribute -> 'time' AS TIMESTAMP)             AS check_time
                 FROM item_change i
                 INNER JOIN item_type it
-                    ON i.id = i.item_type_id
+                    ON it.id = i.item_type_id
                     AND it.key = 'SES_SERVICE'
                 WHERE attribute -> 'platform' = COALESCE(platform_param, attribute -> 'platform')
                   AND attribute -> 'service' = COALESCE(service_param, attribute -> 'service')
