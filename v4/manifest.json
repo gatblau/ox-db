@@ -162,6 +162,11 @@
           "name": "universal model",
           "file": "u.sql",
           "vars": []
+        },
+        {
+          "name": "artisan model",
+          "file": "art.sql",
+          "vars": []
         }
       ]
     },
