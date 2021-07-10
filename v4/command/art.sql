@@ -265,7 +265,7 @@ VALUES ('ART_FX_ATTR_USER', -- key
         'USER', -- name
         'The user name required to retrieve the package storing the Artisan registry.', -- description
         'string', -- type
-        true, -- required
+        false, -- required
         11, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
@@ -275,7 +275,7 @@ VALUES ('ART_FX_ATTR_PWD', -- key
         'PWD', -- name
         'The password required to retrieve the package storing the Artisan registry.', -- description
         'string', -- type
-        true, -- required
+        false, -- required
         11, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
