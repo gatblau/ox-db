@@ -15,7 +15,6 @@ VALUES (11, 'ART_FX', 'Artisan Function', 'The definition of a function in an Ar
   "title": "Root",
   "type": "object",
   "required": [
-    "input"
   ],
   "properties": {
     "input": {
@@ -23,10 +22,6 @@ VALUES (11, 'ART_FX', 'Artisan Function', 'The definition of a function in an Ar
       "title": "Input",
       "type": "object",
       "required": [
-        "file",
-        "var",
-        "secret",
-        "key"
       ],
       "properties": {
         "file": {
