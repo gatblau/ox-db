@@ -4,10 +4,10 @@ VALUES (2, 'ART', 'Artisan Model', 'Configure Artisan automation', true, 'onix',
 
 -- item types
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change)
-VALUES (10, 'ART_FLOW', 'Artisan Flow', 'The definition of a sequence of steps executing Artisan functions.', 1, 'onix', 2, 'N');
+VALUES (100, 'ART_FLOW', 'Artisan Flow', 'The definition of a sequence of steps executing Artisan functions.', 1, 'onix', 2, 'N');
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change, meta_schema)
-VALUES (11, 'ART_FX', 'Artisan Function', 'The definition of a function in an Artisan package.', 1, 'onix', 2, 'N',
+VALUES (101, 'ART_FX', 'Artisan Function', 'The definition of a function in an Artisan package.', 1, 'onix', 2, 'N',
 '{
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",
@@ -241,7 +241,7 @@ VALUES ('ART_FX_ATTR_PACKAGE', -- key
         'The name of the artisan package holding the function to execute.', -- description
         'string', -- type
         true, -- required
-        11, -- item_type_id (ART_FX)
+        101, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
 
@@ -251,7 +251,7 @@ VALUES ('ART_FX_ATTR_FX', -- key
         'The name of the function in the Artisan package that defines a specific API.', -- description
         'string', -- type
         true, -- required
-        11, -- item_type_id (ART_FX)
+        101, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
 
@@ -261,7 +261,7 @@ VALUES ('ART_FX_ATTR_USER', -- key
         'The user name required to retrieve the package storing the Artisan registry.', -- description
         'string', -- type
         false, -- required
-        11, -- item_type_id (ART_FX)
+        101, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
 
@@ -271,7 +271,7 @@ VALUES ('ART_FX_ATTR_PWD', -- key
         'The password required to retrieve the package storing the Artisan registry.', -- description
         'string', -- type
         false, -- required
-        11, -- item_type_id (ART_FX)
+        101, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
 
@@ -281,7 +281,7 @@ VALUES ('ART_FX_ATTR_VERBOSE', -- key
         'A flag indicating if the execution log should be verbose.', -- description
         'boolean', -- type
         false, -- required
-        11, -- item_type_id (ART_FX)
+        101, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
 
@@ -291,6 +291,6 @@ VALUES ('ART_FX_ATTR_CONTAINERISED', -- key
         'A flag indicating if the execution should occur in a runtime container.', -- description
         'boolean', -- type
         false, -- required
-        11, -- item_type_id (ART_FX)
+        101, -- item_type_id (ART_FX)
         'onix' -- changed_by
        );
