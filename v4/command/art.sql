@@ -1,13 +1,13 @@
 -- artisan flow model definition
 INSERT INTO model(id, key, name, description, managed, changed_by, version)
-VALUES (2, 'ART', 'Artisan Model', 'Configure Artisan automation', true, 'onix', 1);
+VALUES (2, 'ART', 'ARTISAN MODEL', 'Configure Artisan automation', true, 'onix', 1);
 
 -- item types
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change)
-VALUES (100, 'ART_FLOW', 'Artisan Flow', 'The definition of a sequence of steps executing Artisan functions.', 1, 'onix', 2, 'N');
+VALUES (100, 'ART_FLOW', 'ARTISAN FLOW', 'The definition of a sequence of steps executing Artisan functions.', 1, 'onix', 2, 'N');
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change, meta_schema)
-VALUES (101, 'ART_FX', 'Artisan Function', 'The definition of a function in an Artisan package.', 1, 'onix', 2, 'N',
+VALUES (101, 'ART_FX', 'ARTISAN FUNCTION', 'The definition of a function in an Artisan package.', 1, 'onix', 2, 'N',
 '{
   "definitions": {},
   "$schema": "http://json-schema.org/draft-07/schema#",

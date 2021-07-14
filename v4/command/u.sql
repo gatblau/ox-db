@@ -12,14 +12,14 @@ VALUES (2, 'U_ZONE', 'ZONE',
         1, 'onix', 1, 'N');
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change)
-VALUES (3, 'U_HOST', 'Host', 'A a computer or other device connected to a computer network', 1, 'onix', 1, 'N');
+VALUES (3, 'U_HOST', 'HOST', 'A a computer or other device connected to a computer network', 1, 'onix', 1, 'N');
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change, encrypt_txt)
 VALUES (4, 'U_APPLICATION', 'APPLICATION', 'The logical representation of a computer software', 1, 'onix', 1, 'I',
         true);
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change)
-VALUES (5, 'U_WORKLOAD', 'Workload',
+VALUES (5, 'U_WORKLOAD', 'WORKLOAD',
         'A process running on a the platform, which represents an instance of an application', 1, 'onix', 1, 'N');
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change)
