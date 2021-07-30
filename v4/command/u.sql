@@ -80,11 +80,11 @@ INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_
 VALUES (6, 'U_ORG_GROUP_TO_ORG', 'Organization Group -> Group Rule',
         'Connects Organizations to the Areas they comprise.', 1, 7, 8, 1, 'onix');
 
--- Org -> Area
+-- Org Group -> Area
 INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_id, end_item_type_id, version,
                       changed_by)
-VALUES (7, 'U_ORG_TO_AREA', 'Organization -> Area Rule',
-        'Connects Organization Groups to the Organizations they comprise.', 1, 8, 9, 1, 'onix');
+VALUES (7, 'U_ORG_GROUP_TO_AREA', 'Organization Group -> Area Rule',
+        'Connects Organization Groups to the areas under which they operate.', 1, 7, 9, 1, 'onix');
 
 -- Area -> Location
 INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_id, end_item_type_id, version,
