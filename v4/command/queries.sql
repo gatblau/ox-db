@@ -1112,27 +1112,26 @@ CREATE OR REPLACE FUNCTION ox_get_item_first_level_children(
     STABLE
 AS $BODY$
 BEGIN
-    RETURN QUERY SELECT
-             i.id,
-             i.key,
-             i.name,
-             i.description,
-             i.status,
-             it.key as item_type_key,
-             it.name as item_type_name,
-             i.meta,
-             i.meta_enc,
-             i.txt,
-             i.txt_enc,
-             i.enc_key_ix,
-             i.tag,
-             i.attribute,
-             i.version,
-             i.created,
-             i.updated,
-             i.changed_by,
-             m.key as model_key,
-             p.key as partition_key
+    RETURN QUERY SELECT child.id,
+                        child.key,
+                        child.name,
+                        child.description,
+                        child.status,
+                        it.key  as item_type_key,
+                        it.name as item_type_name,
+                        child.meta,
+                        child.meta_enc,
+                        child.txt,
+                        child.txt_enc,
+                        child.enc_key_ix,
+                        child.tag,
+                        child.attribute,
+                        child.version,
+                        child.created,
+                        child.updated,
+                        child.changed_by,
+                        m.key   as model_key,
+                        p.key   as partition_key
          FROM item i
               INNER JOIN link l ON l.start_item_id = i.id
               INNER JOIN item child ON child.id = l.end_item_id
