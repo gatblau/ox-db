@@ -96,7 +96,7 @@ VALUES (8, 'U_AREA_TO_LOCATION', 'Area -> Location Rule',
 INSERT INTO link_rule(id, key, name, description, link_type_id, start_item_type_id, end_item_type_id, version,
                       changed_by)
 VALUES (9, 'U_ORG_TO_LOCATION', 'Organisation -> Location Rule',
-        'Connects an organisation to a location within it.', 1, 8, 9, 1, 'onix');
+        'Connects an organisation to a location within it.', 1, 8, 10, 1, 'onix');
 
 INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
 VALUES ('U_HOST_ATTR_OS', -- key
