@@ -148,3 +148,33 @@ VALUES ('U_HOST_ATTR_VIRTUAL', -- key
         3, -- item_type_id (U_HOST)
         'onix' -- changed_by
        );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('U_HOST_ATTR_IP', -- key
+        'IP', -- name
+        'The host IP address', -- description
+        'string', -- type
+        true, -- required
+        3, -- item_type_id (U_HOST)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('U_HOST_ATTR_MACHINE_ID', -- key
+        'MACHINE-ID', -- name
+        'The host machine Id', -- description
+        'string', -- type
+        true, -- required
+        3, -- item_type_id (U_HOST)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('U_HOST_ATTR_HOSTNAME', -- key
+        'HOSTNAME', -- name
+        'The host name', -- description
+        'string', -- type
+        true, -- required
+        3, -- item_type_id (U_HOST)
+        'onix' -- changed_by
+       );
