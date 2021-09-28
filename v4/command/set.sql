@@ -319,6 +319,7 @@ DO $$
                     email != email_param OR
                     expires != expires_param OR
                     service != service_param OR
+                    acl != acl_param OR
                     pwd != pwd_param AND pwd_param IS NOT NULL
                 );
             GET DIAGNOSTICS rows_affected := ROW_COUNT;
