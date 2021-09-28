@@ -43,17 +43,21 @@ $$
             CACHE 1;
 
         CREATE TABLE "user" (
-            id bigint DEFAULT nextval('public.user_id_seq'::regclass) NOT NULL,
-            "key" character varying(100) NOT NULL,
-            name character varying(200) NOT NULL,
-            email character varying(200) NOT NULL,
-            pwd character varying(300),
-            salt character varying(300),
-            expires timestamp(6) with time zone,
-            version bigint DEFAULT 1 NOT NULL,
-            created timestamp(6) with time zone DEFAULT CURRENT_TIMESTAMP(6),
-            updated timestamp(6) with time zone,
-            changed_by character varying(100) NOT NULL
+            id         BIGINT                 NOT NULL DEFAULT nextval('user_id_seq'::regclass),
+            key        CHARACTER VARYING(100) NOT NULL,
+            name       CHARACTER VARYING(200) NOT NULL,
+            email      CHARACTER VARYING(200),
+            pwd        CHARACTER VARYING(300),
+            salt       CHARACTER VARYING(300),
+            expires    TIMESTAMP(6) WITH TIME ZONE,
+            service    BOOLEAN                         DEFAULT FALSE,
+            -- an access control list for UI or API operations following the syntax
+            -- realm:uri:method, realm:uri:method, ... => my-app:/items/*/data:GET, ..., ...
+            acl        TEXT,
+            version    BIGINT                 NOT NULL DEFAULT 1,
+            created    TIMESTAMP(6) WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP(6),
+            updated    TIMESTAMP(6) WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP(6),
+            changed_by CHARACTER VARYING(100) NOT NULL
         );
 
         -- generic users - should change passwords after first login
@@ -67,17 +71,21 @@ $$
         CREATE TABLE user_change (
              "operation" character(1) NOT NULL,
              changed timestamp without time zone NOT NULL,
-             id bigint,
-             "key" character varying(100),
-             name character varying(200),
-             email character varying(200),
-             pwd character varying(300),
-             salt character varying(300),
-             expires timestamp(6) with time zone,
-             version bigint,
-             created timestamp(6) with time zone,
-             updated timestamp(6) with time zone,
-             changed_by character varying(100) NOT NULL
+             id         BIGINT,
+             key        CHARACTER VARYING(100),
+             name       CHARACTER VARYING(200),
+             email      CHARACTER VARYING(200),
+             pwd        CHARACTER VARYING(300),
+             salt       CHARACTER VARYING(300),
+             expires    TIMESTAMP(6) WITH TIME ZONE,
+             service    BOOLEAN,
+             -- an access control list for UI or API operations following the syntax
+             -- realm:uri:method, realm:uri:method, ... => my-app:/items/*/data:GET, ..., ...
+             acl        TEXT,
+             version    BIGINT,
+             created    TIMESTAMP(6) WITH TIME ZONE,
+             updated    TIMESTAMP(6) WITH TIME ZONE,
+             changed_by CHARACTER VARYING(100) NOT NULL
         );
 
         CREATE TABLE membership (

@@ -40,6 +40,9 @@ $$
                 salt       CHARACTER VARYING(300) COLLATE pg_catalog."default",
                 expires    TIMESTAMP(6) WITH TIME ZONE,
                 service    BOOLEAN                         DEFAULT FALSE,
+                -- an access control list for UI or API operations following the syntax
+                -- realm:uri:method => my-app:/items/*/data:GET
+                acl        TEXT,
                 version    BIGINT                 NOT NULL DEFAULT 1,
                 created    TIMESTAMP(6) WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP(6),
                 updated    TIMESTAMP(6) WITH TIME ZONE     DEFAULT CURRENT_TIMESTAMP(6),
@@ -83,6 +86,7 @@ $$
                 salt       CHARACTER VARYING(300) COLLATE pg_catalog."default",
                 expires    TIMESTAMP(6) WITH TIME ZONE,
                 service    BOOLEAN DEFAULT FALSE,
+                acl        TEXT,
                 version    BIGINT,
                 created    TIMESTAMP(6) WITH TIME ZONE,
                 updated    TIMESTAMP(6) WITH TIME ZONE,

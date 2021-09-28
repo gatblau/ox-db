@@ -234,6 +234,7 @@ DO $$
         salt_param character varying,
         expires_param timestamp(6) with time zone,
         service_param boolean,
+        acl_param text,
         local_version_param bigint,
         changed_by_param character varying,
         role_key_param character varying[])
@@ -266,6 +267,7 @@ DO $$
                 salt,
                 expires,
                 service,
+                acl,
                 version,
                 created,
                 updated,
@@ -280,6 +282,7 @@ DO $$
                salt_param,
                expires_param,
                service_param,
+               acl_param,
                1,
                current_timestamp,
                current_timestamp,
@@ -304,6 +307,7 @@ DO $$
                 salt         = COALESCE(new_salt, salt),  -- if new_salt is NOT NULL, the update the salt
                 expires      = expires_param,
                 service      = service_param,
+                acl          = acl_param,
                 version      = version + 1,
                 updated      = current_timestamp,
                 changed_by   = changed_by_param
@@ -332,6 +336,7 @@ DO $$
             character varying, -- salt
             timestamp(6) with time zone, -- expires
             boolean, -- service (account)
+            text, -- acl
             bigint, -- client version
             character varying, -- changed by
             character varying[] -- role keys
