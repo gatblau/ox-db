@@ -36,8 +36,8 @@ $$
                 key        CHARACTER VARYING(100) NOT NULL COLLATE pg_catalog."default",
                 name       CHARACTER VARYING(200) NOT NULL COLLATE pg_catalog."default",
                 email      CHARACTER VARYING(200) COLLATE pg_catalog."default",
-                pwd        CHARACTER VARYING(300) COLLATE pg_catalog."default",
-                salt       CHARACTER VARYING(300) COLLATE pg_catalog."default",
+                pwd        CHARACTER VARYING(300) NOT NULL COLLATE pg_catalog."default",
+                salt       CHARACTER VARYING(300) NOT NULL COLLATE pg_catalog."default",
                 expires    TIMESTAMP(6) WITH TIME ZONE,
                 service    BOOLEAN                         DEFAULT FALSE,
                 -- an access control list for UI or API operations following the syntax
