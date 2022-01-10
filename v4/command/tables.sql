@@ -52,6 +52,7 @@ $$
                 CONSTRAINT user_name_uc UNIQUE (name),
                 CONSTRAINT user_email_uc UNIQUE (email),
                 CONSTRAINT valid_email CHECK (email ~* '^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+[.][A-Za-z]+$'),
+                CONSTRAINT valid_user CHECK (name ~* '^[A-Za-z]\w{1,198}[a-zA-Z0-9]$'),
                 -- service accounts do not have emails
                 CONSTRAINT service_no_email CHECK ((email IS NULL AND service = TRUE) OR
                                                    (email IS NOT NULL AND service = FALSE)),
