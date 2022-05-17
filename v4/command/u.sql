@@ -38,6 +38,16 @@ VALUES (9, 'U_AREA', 'AREA', 'An area, either geographical or organisational, wi
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change)
 VALUES (10, 'U_LOCATION', 'LOCATION', 'A specific location, either physical or logical, that is in an area where a host is deployed.', 1, 'onix', 1, 'N');
 
+-- dictionary item for storing encrypted properties using key-value pair json schema validation
+INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change, encrypt_meta, meta_schema)
+VALUES (11, 'U_DICTIONARY', 'DICTIONARY', 'A list of key value pairs storing a set of variables for a particular purpose.', 1, 'onix', 1, 'N', true,
+'{
+  "title": "Force every property to have a string value",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "additionalProperties": {"type": "string"}
+}');
+
 -- link types
 INSERT INTO link_type(id, key, name, description, version, changed_by, model_id)
 VALUES (1, 'U_RELATIONSHIP', 'U Model Relation Link', 'Connects items in the U model defining their relations.', 1,
