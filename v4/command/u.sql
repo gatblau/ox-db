@@ -48,6 +48,9 @@ VALUES (11, 'U_DICTIONARY', 'DICTIONARY', 'A list of key value pairs storing a s
   "additionalProperties": {"type": "string"}
 }');
 
+INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change, encrypt_meta)
+VALUES (12, 'U_CATALOGUE', 'CATALOGUE', 'A catalogue item representing an artisan release specification', 1, 'onix', 1, 'N', false);
+
 -- link types
 INSERT INTO link_type(id, key, name, description, version, changed_by, model_id)
 VALUES (1, 'U_RELATIONSHIP', 'U Model Relation Link', 'Connects items in the U model defining their relations.', 1,
