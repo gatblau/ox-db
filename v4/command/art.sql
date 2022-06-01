@@ -236,7 +236,7 @@ VALUES (101, 'ART_FX', 'ARTISAN FUNCTION', 'The definition of a function in an A
 }');
 
 INSERT INTO item_type(id, key, name, description, version, changed_by, model_id, notify_change, meta_schema)
-VALUES (102, 'ART_SPEC_FX', 'ARTISAN SPEC FUNCTION', 'The definition of a function in an Artisan release specification.', 1, 'onix', 2, 'Y',
+VALUES (102, 'ART_SPEC_FX', 'ARTISAN SPEC FUNCTION', 'The definition of a function in an Artisan release specification.', 1, 'onix', 2, 'T',
         '{
           "definitions": {},
           "$schema": "http://json-schema.org/draft-07/schema#",
