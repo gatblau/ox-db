@@ -191,3 +191,33 @@ VALUES ('U_HOST_ATTR_HOSTNAME', -- key
         3, -- item_type_id (U_HOST)
         'onix' -- changed_by
        );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('U_CATALOGUE_ATTR_VERSION', -- key
+        'VERSION', -- name
+        'The version of the release.', -- description
+        'string', -- type
+        true, -- required
+        12, -- item_type_id (U_CATALOGUE)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('U_CATALOGUE_ATTR_LICENSE', -- key
+        'LICENSE', -- name
+        'The license of the release.', -- description
+        'string', -- type
+        true, -- required
+        12, -- item_type_id (U_CATALOGUE)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('U_CATALOGUE_ATTR_AUTHOR', -- key
+        'AUTHOR', -- name
+        'The author of the release.', -- description
+        'string', -- type
+        true, -- required
+        12, -- item_type_id (U_CATALOGUE)
+        'onix' -- changed_by
+       );

@@ -515,6 +515,56 @@ VALUES ('ART_FX_ATTR_VERBOSE', -- key
        );
 
 INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('ART_SPEC_FX_ATTR_PACKAGE', -- key
+        'PACKAGE', -- name
+        'The name of the artisan package holding the function to execute.', -- description
+        'string', -- type
+        true, -- required
+        102, -- item_type_id (ART_SPEC_FX)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('ART_SPEC_FX_ATTR_FX', -- key
+        'FX', -- name
+        'The name of the function in the Artisan package that defines a specific API.', -- description
+        'string', -- type
+        true, -- required
+        102, -- item_type_id (ART_FX)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('ART_SPEC_FX_ATTR_USER', -- key
+        'USER', -- name
+        'The user name required to retrieve the package storing the Artisan registry.', -- description
+        'string', -- type
+        false, -- required
+        102, -- item_type_id (ART_FX)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('ART_SPEC_FX_ATTR_PWD', -- key
+        'PWD', -- name
+        'The password required to retrieve the package storing the Artisan registry.', -- description
+        'string', -- type
+        false, -- required
+        102, -- item_type_id (ART_FX)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
+VALUES ('ART_SPEC_FX_ATTR_VERBOSE', -- key
+        'VERBOSE', -- name
+        'A flag indicating if the execution log should be verbose.', -- description
+        'boolean', -- type
+        false, -- required
+        101, -- item_type_id (ART_FX)
+        'onix' -- changed_by
+       );
+
+INSERT INTO type_attribute(key, name, description, type, required, item_type_id, changed_by)
 VALUES ('ART_FX_ATTR_CONTAINERISED', -- key
         'CONTAINERISED', -- name
         'A flag indicating if the execution should occur in a runtime container.', -- description
