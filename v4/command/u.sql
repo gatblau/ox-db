@@ -207,7 +207,7 @@ VALUES ('U_CATALOGUE_ATTR_LICENSE', -- key
         'LICENSE', -- name
         'The license of the release.', -- description
         'string', -- type
-        true, -- required
+        false, -- required
         12, -- item_type_id (U_CATALOGUE)
         'onix' -- changed_by
        );
@@ -217,7 +217,7 @@ VALUES ('U_CATALOGUE_ATTR_AUTHOR', -- key
         'AUTHOR', -- name
         'The author of the release.', -- description
         'string', -- type
-        true, -- required
+        false, -- required
         12, -- item_type_id (U_CATALOGUE)
         'onix' -- changed_by
        );
