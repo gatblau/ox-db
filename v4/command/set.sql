@@ -743,9 +743,9 @@ DO $$
         UPDATE item
         SET name         = name_param,
             description  = description_param,
-            meta         = meta_param,
+            meta         = COALESCE(meta_param, meta), -- if meta_param is null do not update it in the table
             meta_enc     = meta_enc_param,
-            txt          = txt_param,
+            txt          = COALESCE(txt_param, txt), -- if txt_param is null do not update it in the database
             txt_enc      = txt_enc_param,
             enc_key_ix   = enc_key_ix_param,
             tag          = tag_param,
